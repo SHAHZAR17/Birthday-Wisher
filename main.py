@@ -22,24 +22,24 @@ bd_wish = pandas.read_csv('birthdays.csv')
 birthdays_dict = {
     (row["month"], row["day"]): row for (index, row) in bd_wish.iterrows()
 }
-
-today = dt.datetime.now()
-date = (today.month,today.day)
-
-# for row in birthdays_dict.values():
-#     if date == (row['month'],row['day']) :
-if date in birthdays_dict:
-    birthdays_person = birthdays_dict[date]
-
-    with open(f'letter_templates/letter_{random.randint(1,3)}.txt') as letter:
-        let = letter.read()
-        name = birthdays_person['name']
-        email = birthdays_person['email']
-        bd_letter = let.replace('[NAME]',name)
-
-    with smtplib.SMTP('smtp.gmail.com',port=587) as connection:
-        connection.starttls()
-        connection.login(user=MY_EMAIL,password=MY_PASSWORD)
-        connection.sendmail(from_addr=MY_EMAIL,to_addrs=email,msg=f'Subject:Birthday Mail\n\n{bd_letter}')
-
-
+if __name__ == "__main__":
+    today = dt.datetime.now()
+    date = (today.month,today.day)
+    
+    # for row in birthdays_dict.values():
+    #     if date == (row['month'],row['day']) :
+    if date in birthdays_dict:
+        birthdays_person = birthdays_dict[date]
+    
+        with open(f'letter_templates/letter_{random.randint(1,3)}.txt') as letter:
+            let = letter.read()
+            name = birthdays_person['name']
+            email = birthdays_person['email']
+            bd_letter = let.replace('[NAME]',name)
+    
+        with smtplib.SMTP('smtp.gmail.com',port=587) as connection:
+            connection.starttls()
+            connection.login(user=MY_EMAIL,password=MY_PASSWORD)
+            connection.sendmail(from_addr=MY_EMAIL,to_addrs=email,msg=f'Subject:Birthday Mail\n\n{bd_letter}')
+    
+    
