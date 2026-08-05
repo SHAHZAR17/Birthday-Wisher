@@ -15,6 +15,7 @@ import smtplib
 # import os and use it to get the Github repository secrets
 MY_EMAIL = os.environ.get("MY_EMAIL")
 MY_PASSWORD = os.environ.get("MY_PASSWORD")
+email1=os.environ.get("EMAIL1")
 
 
 bd_wish = pandas.read_csv('birthdays.csv')
@@ -40,6 +41,6 @@ if __name__ == "__main__":
         with smtplib.SMTP('smtp.gmail.com',port=587) as connection:
             connection.starttls()
             connection.login(user=MY_EMAIL,password=MY_PASSWORD)
-            connection.sendmail(from_addr=MY_EMAIL,to_addrs=email,msg=f'Subject:Birthday Mail\n\n{bd_letter}')
+            connection.sendmail(from_addr=MY_EMAIL,to_addrs=email1,msg=f'Subject:Birthday Mail\n\n{bd_letter}')
     
     
