@@ -2,9 +2,9 @@ import os
 import requests
 import smtplib
 
-email = os.environ.get("Email")
-password = os.environ.get("Password")
-email1 = os.environ.get("Email1")
+email = os.environ.get("EMAIL")
+password = os.environ.get("PASSWORD")
+email1 = os.environ.get("EMAIL1")
 app_id=os.environ.get("W_ID")
 
 parameters = {
